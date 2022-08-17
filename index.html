@@ -1,0 +1,64 @@
+<head>
+        <title>Radio PlayerPeru</title>
+ <link rel='icon' href='favicon.ico' type='image/x-icon'/ >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/style/font-awsome/css/all.css">
+  <link rel="stylesheet" href="dist/style/main.min.css">
+  <script src="dist/index.min.js"></script>
+  <link rel="stylesheet" href="main.css">
+      
+</head>
+
+
+
+<div id="live-preview">
+<div id="player"></div>
+</div>
+
+
+<script>
+  var player = new AudioPlayer({
+      divId: "player",
+      layout : "phone",
+     audios: [
+      {
+        title: "Jov radio",
+        image: 'assets/1.jpg',
+		artist: "Lima Peru",
+        album: 'Online Radio',
+        source: 'https://node-07.zeno.fm/ssr3g09333duv'
+      },
+      {
+        title: "Sjl Radio",
+        artist: "Lima Peru",
+        image: 'assets/2.jpg',
+        album: 'Online Radio',
+        source:'https://streamprivate.live/8190/stream'
+      },
+      {
+        title: "La Rock & Pop",
+        artist: "Lima Peru",
+        image: 'assets/3.jpg',
+        album: 'Online Radio',
+        source:'https://streamprivate.live/8106/stream'
+      },
+      {
+        title: "Mariella FM",
+        artist: "Lima Peru",
+        image: 'assets/4.jpg',
+        album: 'Online Radio',
+        source:'https://streamprivate.live/8088/stream'
+      },
+	   {
+        title: "Radio Sonica",
+        artist: "Lima Peru",
+        image: 'assets/5.jpg',
+        album: 'Online Radio',
+        source:'https://streamprivate.live/8144/index'
+      }
+    ],
+    });
+  </script>
