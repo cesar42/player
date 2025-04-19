@@ -1,7 +1,7 @@
 {
-    "name": "Radio Stereo 100 Fm",
-    "short_name": "Radio Stereo 100 Fm",
-    "description": "Siempre Noticias",
+    "name": "Radio Player Peru",
+    "short_name": "Radio Player Peru",
+    "description": "Las Mejores Emisoras del Peru",
     "icons": [
         {
             "src": "img/logo.png",
