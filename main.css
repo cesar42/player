@@ -12,7 +12,7 @@ html>* {
     border-radius: 5px;
     line-height: 1.6;
     font-size: 1rem;
-    font-family: 'Roboto Stereo', monospace;
+    font-family: 'Roboto Mono', monospace;
   }
 
   #definition {
