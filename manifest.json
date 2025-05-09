@@ -1,8 +1,8 @@
 
 {
-	"name": "Radio Karimar",
-	"short_name": "Radio Karimar",
-	"description": "Musica En Linea  24/7.",
+	"name": "Radio Player Peru",
+	"short_name": "Radio Player Peru",
+	"description": "Las Mejores Emisoras del Peru",
 	"icons" : [
 		 {
             "src": "imagenes/app.png",
