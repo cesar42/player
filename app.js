@@ -61,5 +61,5 @@ if (isIos() && !isInStandaloneMode()) {
     });
 } else if (!isIos()) {
     const installBtn = document.getElementById('installBtn');
-    installBtn.style.display = 'block';
+    installBtn.app.js = 'block';
 }
