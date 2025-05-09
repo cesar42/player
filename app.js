@@ -10,7 +10,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
     // Detect if device is iOS
     if (!isIos()) {
-        installBtn.style.display = 'block';
+        installBtn.app.js.display = 'block';
     }
 
     installBtn.addEventListener('click', () => {
