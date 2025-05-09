@@ -1,4 +1,4 @@
-
+{
     "name": "Radio Player Peru",
     "short_name": "Radio Player Peru",
     "description": "Las Mejores Emisoras del Peru",
@@ -49,6 +49,7 @@
     "display": "standalone",
     "theme_color": "#f7a84d",
     "background_color": "#f7a84d"
+}    
 
 
 
