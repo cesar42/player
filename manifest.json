@@ -45,7 +45,7 @@
             "type": "image/png"
         }
     ],
-    "start_url": "./player/index.html",
+    "start_url": "/player/index.html",
     "display": "standalone",
     "theme_color": "#f7a84d",
     "background_color": "#f7a84d"
