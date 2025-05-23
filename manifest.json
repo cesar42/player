@@ -47,8 +47,8 @@
     ],
     "start_url": "/player/index.html",
     "display": "standalone",
-    "theme_color": "#f7a84d",
-    "background_color": "#f7a84d"
+    "theme_color": "#5550f2",
+    "background_color": "#5550f2"
 }
 
 
