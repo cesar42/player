@@ -1,279 +1,242 @@
-<!DOCTYPE html>
-<html lang="es"><head>
-     <link rel="manifest" href="manifest.json">
-     <meta charset="utf-8">
-    
-     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-     <title>Radio Player Peru</title>
-    <meta charset="utf-8">
-    
-        <meta name="keywords" content="Radio Player Peru">
-        <meta name="description" content="Radio Player Peru">
-        <meta name="theme-color" content="#fa3232">
-        <meta name="author" content="By: Radio Player Peru">
-        <meta name="copyright" content="Stereo100 Contenidos">
-        <meta name="geo.placename" content="Radio Player Peru">
-        <meta property="og:type" content="website">
-        <meta property="og:site_name" content="Radio Player Peru">
-        <meta property="og:url" content="#">
-        <meta property="og:title" content="Radio Player Peru">
-        <meta property="og:description" content="Radio Player Peru - Emisoras de Peru">
-        <meta property="og:image" content="img/logo.png">
-        <meta property="og:image:type" content="logo.png">
-        <meta property="og:image:width" content="600">
-        <meta property="og:image:height" content="360">
-        <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-        <link rel="apple-touch-icon" href="img/logo.png">
-        <link href="css/style.css?v=1.0" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css?v=1.0" rel="stylesheet">
-    <link rel="manifest" href="manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/lunaradio-animado.js"></script>
-	
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dist/style/font-awsome/css/all.css">
-    <link rel="stylesheet" href="dist/style/main.min.css">
-    <script src="dist/index.min.js"></script>
-        <link href="css/main.css?v=1.0" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css?v=1.0" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="dist/index.min.js"></script>
-    <link rel="stylesheet" href="main.css">
-    </head>
-	 <link rel="manifest" href="manifest.json">
-	<style>
-        html, body {
-            font-family: "Open Sans", sans-serif;
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            color: #000000;
-        }
-        #installPopup {
-            display: none;
-            position: fixed;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(221, 221, 221, 0.9);
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            z-index: 1000;
-            text-align: center;
-            border-radius: 15px;
-        }
-        #installPopup button {
-            
-            background: #3a96e0;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-    </style>
-    <script src="app.js" defer=""></script>
-    <link rel="icon" href="img/logo.png">
-    <link rel="manifest" href="manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
-    <title>Radio Player Peru</title>
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400"><link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Unica+One&amp;display=swap"><style type="text/css">@keyframes playerpulse { 	0% { 	  fill: rgba(255, 255, 255, 1.0);	} 	50% { 	  fill: rgba(249, 217, 74, 1.0); 	} 	100% { 		fill: rgba(255, 255, 255, 1.0); 	} }</style></head>
-	
+```jsx
+import { useState, useEffect, useRef } from 'react';
 
-	
-    <div class="overlay" id="overlay" style="display: none;"></div>
-    <div id="installPopup" style="display: none;">
-        <p>Instala Nuestra Aplicacion a Tu Celular</p>
-        <button id="installAppButton">
-          <img src="img/img-instalar-app-android.png" alt="android" height="48">
-          <img src="img/img-instalar-app-iphone.png" alt="iphone" height="48">
-          <img src="img/img-instalar-app-windows.png" alt="windows" height="48">
-        </button>
-        <div id="iosInstructions" style="display:none;">
-            </div>
-         </div>
-<div id="live-preview">
-<div id="player"></div>
-</div>
-<script>
+export default function App() {
+  const [currentStation, setCurrentStation] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const audioRef = useRef(null);
+  const deferredPrompt = useRef(null);
 
-  var player = new AudioPlayer({
-      divId: "player",
-      layout : "phone",
-     audios: [
-      {
-        title: "Mariella FM",
-        artist: "Lima Peru",
-        image: 'assets/4.jpg',
-        album: 'Online Radio',
-        source:'https://stream.zeno.fm/pk9nmfdfvbytv'
-      },
-      {
-        title: "Sjl Radio",
-        artist: "Lima Peru",
-        image: 'assets/2.jpg',
-        album: 'Online Radio',
-        source:'https://stream.zeno.fm/6256hg67bpeuv'
-      },
-      {
-        title: "La Rock & Pop",
-        artist: "Lima Peru",
-        image: 'assets/3.jpg',
-        album: 'Online Radio',
-        source:'https://stream.zeno.fm/gprgtgj3jicvv'
-      },
-      {
-	title: "Cafe Radio",
-        image: 'assets/1.jpg',
-		artist: "Lima Peru",
-        album: 'Online Radio',
-        source: 'https://stream-153.zeno.fm/scnfxcqndkeuv?zt='
-      },
-	   {
-        title: "Radio Sonica",
-        artist: "Lima Peru",
-        image: 'assets/5.jpg',
-        album: 'Online Radio',
-        source:'https://stream.zeno.fm/8fkyyeiltbuvv'
-      },
-	{
-        title: "Radio Fuego",
-        artist: "Lima Peru",
-        image: 'assets/6.jpg',
-        album: 'Online Radio',
-        source:'https://stream.zeno.fm/5zidil37ibfuv'
-      },
-	{
-        title: "PBO RADIO",
-        artist: "Lima Peru",
-        image: 'assets/7.jpg',
-        album: 'Online Radio',
-        source:'http://n10.radiojar.com/2fse67zuv8hvv'
-      },
-	{
-        title: "RPP",
-        artist: "Lima Peru",
-        image: 'assets/8.jpg',
-        album: 'Online Radio',
-        source:'https://mdstrm.com/audio/5fab3416b5f9ef165cfab6e9/icecast.audio'
-      },
-	{
-        title: "RADIO EXITOSA",
-        artist: "Lima Peru",
-        image: 'assets/9.jpg',
-        album: 'Online Radio',
-        source:'https://neptuno-2-audio.mediaserver.digital/79525baf-b0f5-4013-a8bd-3c5c293c6561'
-      },		       
-	{
-        title: "Radio Congreso",
-        artist: "Lima Peru",
-        image: 'assets/10.jpg',
-        album: 'Online Radio',
-        source:'https://vivo.miradio.in/8048/stream'
-      },
-	{
-        title: "Radio Panamericana",
-        artist: "Lima Peru",
-        image: 'assets/11.jpg',
-        album: 'Online Radio',
-        source:'https://us-b4-p-e-qg12-audio.cdn.mdstrm.com/live-audio-aw/6598b62dded1380470f4e539'
-      },
-      {
-        title: "Ritmo Romantica",
-        artist: "Lima Peru",
-        image: 'assets/12.jpg',
-        album: 'Online Radio',
-        source:'https://playerservices.streamtheworld.com/api/livestream-redirect/CRP_RITAAC.aac?csegid=1010&dist=1010'
-      },
-      {
-        title: "Radio Oxigeno",
-        artist: "Lima Peru",
-        image: 'assets/13.jpg',
-        album: 'Online Radio',
-        source:'https://us-b4-p-e-pb13-audio.cdn.mdstrm.com/live-audio-aw/5fab0687bcd6c2389ee9480c?aid'
-      },
-      {
-	title: "Radio Magica",
-        image: 'assets/14.jpg',
-		artist: "Lima Peru",
-        album: 'Online Radio',
-        source: 'https://playerservices.streamtheworld.com/api/livestream-redirect/MAG_AAC.aac?dist=onlineradiobox'
-      },
-	   {
-        title: "Radio Studio 92",
-        artist: "Lima Peru",
-        image: 'assets/15.jpg',
-        album: 'Online Radio',
-        source:'https://mdstrm.com/audio/5fada553978fe1080e3ac5ea/icecast.audio'
-      },
-	{
-        title: "Radio Planeta",
-        artist: "Lima Peru",
-        image: 'assets/16.jpg',
-        album: 'Online Radio',
-        source:'https://22213.live.streamtheworld.com/CRP_PLAAAC.aac'
-      },
-	{
-        title: "La Mega Mix",
-        artist: "Lima Peru",
-        image: 'assets/17.jpg',
-        album: 'Online Radio',
-        source:'https://mdstrm.com/audio/5fada56fe4e09508207a7951/icecast.audio'
-      },
-	{
-        title: "Radio Moda",
-        artist: "Lima Peru",
-        image: 'assets/18.jpg',
-        album: 'Online Radio',
-        source:'https://14093.live.streamtheworld.com/CRP_MODAAC.aac?csegid=1010&dist=1010&_=308769'
-      },
-	{
-        title: "Radio Onda Cero",
-        artist: "Lima Peru",
-        image: 'assets/19.jpg',
-        album: 'Online Radio',
-        source:'https://mdstrm.com/audio/6598b65ab398c90871aff8cc/icecast.audio'
-      },		       
-	{
-        title: "Radiomar",
-        artist: "Lima Peru",
-        image: 'assets/20.jpg',
-        album: 'Online Radio',
-        source:'https://14103.live.streamtheworld.com/CRP_MARAAC.aac'
-      },
-	{
-        title: "Dj vintage",
-        artist: "Lima Peru",
-        image: 'assets/21.jpg',
-        album: 'Online Radio',
-        source:'https://radio.juanjuiserver.com:8070/stream'
-      },
-	{
-        title: "Radio Cielo Am",
-        artist: "Lima Peru",
-        image: 'assets/22.jpg',
-        album: 'Online Radio',
-        source:'https://stream.zeno.fm/kfjyautiyevvv'
-      },
-	{
-        title: "Radio Urbana",
-        artist: "Lima Peru",
-        image: 'assets/23.jpg',
-        album: 'Online Radio',
-        source:'https://radio.sistemasandinos.org/7084/stream'
-      }		       
-    ],
+  const stations = [
+    {
+      title: "Mariella FM",
+      artist: "Lima Peru",
+      image: 'https://placehold.co/300x300/FFB6C1/000000?text=Mariella+FM',
+      source: 'https://stream.zeno.fm/pk9nmfdfvbytv'
+    },
+    {
+      title: "Sjl Radio",
+      artist: "Lima Peru",
+      image: 'https://placehold.co/300x300/FF69B4/000000?text=SJL+Radio',
+      source: 'https://stream.zeno.fm/6256hg67bpeuv'
+    },
+    {
+      title: "La Rock & Pop",
+      artist: "Lima Peru",
+      image: 'https://placehold.co/300x300/FFA07A/000000?text=Rock+%26+Pop',
+      source: 'https://stream.zeno.fm/gprgtgj3jicvv'
+    },
+    {
+      title: "Cafe Radio",
+      artist: "Lima Peru",
+      image: 'https://placehold.co/300x300/FFD700/000000?text=Café+Radio',
+      source: 'https://stream-153.zeno.fm/scnfxcqndkeuv'
+    }
+  ];
+
+  useEffect(() => {
+    // PWA install prompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt.current = e;
+      setShowInstallPrompt(true);
     });
-  </script>
 
-    <footer style="display:grid;align-content:end">
-        <div style="background-color:#f5180f;color:#fff;text-align:center;padding:5px">
-            ©<a href="http://wa.me/51992377712">Copyright 2025</a>
+    // Audio player setup
+    if (audioRef.current) {
+      audioRef.current.volume = 0.7;
+      audioRef.current.addEventListener('error', () => {
+        console.error('Audio stream error');
+      });
+    }
+
+    // Cleanup
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
+
+  const playPause = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const nextStation = () => {
+    setCurrentStation((prev) => (prev + 1) % stations.length);
+  };
+
+  const prevStation = () => {
+    setCurrentStation((prev) => (prev - 1 + stations.length) % stations.length);
+  };
+
+  const installApp = () => {
+    if (deferredPrompt.current) {
+      deferredPrompt.current.prompt();
+      deferredPrompt.current.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        deferredPrompt.current = null;
+        setShowInstallPrompt(false);
+      });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white flex flex-col">
+      {/* Header */}
+      <header className="p-4 border-b border-gray-700">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+            <h1 className="text-xl font-bold">Radio Player Peru</h1>
+          </div>
+          <button 
+            onClick={installApp} 
+            className={`px-3 py-1 rounded-full text-sm ${showInstallPrompt ? 'bg-red-600 hover:bg-red-700' : 'hidden'}`}
+          >
+            Instalar App
+          </button>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
+        {/* Player Card */}
+        <div className="bg-gray-800 rounded-2xl shadow-2xl p-6 w-full max-w-md transform transition-all hover:scale-105">
+          {/* Station Image */}
+          <div className="relative mb-6">
+            <img 
+              src={stations[currentStation].image} 
+              alt={stations[currentStation].title}
+              className="w-full h-64 object-cover rounded-xl shadow-lg"
+            />
+            <div className={`absolute inset-0 flex items-center justify-center ${isPlaying ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+              <div className="w-16 h-16 rounded-full border-4 border-red-500 border-t-transparent animate-spin"></div>
+            </div>
+          </div>
+
+          {/* Station Info */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold">{stations[currentStation].title}</h2>
+            <p className="text-gray-400">{stations[currentStation].artist}</p>
+          </div>
+
+          {/* Audio Controls */}
+          <div className="flex justify-center items-center space-x-6 mb-6">
+            <button 
+              onClick={prevStation}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <button 
+              onClick={playPause}
+              className="bg-red-600 hover:bg-red-700 text-white rounded-full p-4 shadow-lg transform transition-transform active:scale-95"
+            >
+              {isPlaying ? (
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <rect x="6" y="4" width="4" height="16" />
+                  <rect x="14" y="4" width="4" height="16" />
+                </svg>
+              ) : (
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
+            </button>
+
+            <button 
+              onClick={nextStation}
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Audio Element */}
+          <audio ref={audioRef} src={stations[currentStation].source} />
         </div>
 
+        {/* Stations List */}
+        <div className="mt-10 w-full max-w-md">
+          <h3 className="text-lg font-semibold mb-4">Estaciones Populares</h3>
+          <div className="grid grid-cols-2 gap-4">
+            {stations.map((station, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrentStation(index);
+                  setIsPlaying(true);
+                  audioRef.current.play();
+                }}
+                className={`text-left p-3 rounded-lg transition-colors ${
+                  currentStation === index 
+                    ? 'bg-red-600 text-white' 
+                    : 'bg-gray-700 hover:bg-gray-600 text-gray-200'
+                }`}
+              >
+                <div className="flex items-center space-x-2">
+                  <img 
+                    src={station.image} 
+                    alt={station.title}
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <span className="truncate">{station.title}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </main>
 
+      {/* Footer */}
+      <footer className="bg-gray-900 py-4 border-t border-gray-700">
+        <div className="container mx-auto px-4 text-center text-gray-500 text-sm">
+          <p>© {new Date().getFullYear()} Radio Player Peru - Desarrollado por Stereo100 Contenidos</p>
+          <p className="mt-1">
+            <a href="https://wa.me/51992377712" className="hover:text-white transition-colors">
+              Contacto por WhatsApp
+            </a>
+          </p>
+        </div>
+      </footer>
 
+      {/* Install Prompt */}
+      {showInstallPrompt && (
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 p-4 rounded-lg shadow-lg max-w-xs text-center">
+          <p className="mb-3">Instala nuestra aplicación para acceso rápido</p>
+          <div className="flex justify-center space-x-2">
+            <button 
+              onClick={installApp}
+              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-sm"
+            >
+              Instalar
+            </button>
+            <button 
+              onClick={() => setShowInstallPrompt(false)}
+              className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+```
