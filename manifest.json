@@ -1,7 +1,7 @@
 {
     "name": "Radio Player Peru",
     "short_name": "Radio Player Peru",
-    "description": "Las Mejores Emisoras del Peru",
+    "description": "Radio Player Peru",
     "icons": [
         {
             "src": "img/logo.png",
@@ -37,7 +37,7 @@
             "src": "img/logo.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "image/png"
+            "purpose": "maskable"
         },
         {
             "src": "img/logo.png",
@@ -45,11 +45,8 @@
             "type": "image/png"
         }
     ],
-    "start_url": "/?mode=pwa",
+    "start_url": "index.html",
     "display": "standalone",
-    "theme_color": "#5550f2",
-    "background_color": "#5550f2"
+    "theme_color": "#f7a84d",
+    "background_color": "#f7a84d"
 }
-
-
-
